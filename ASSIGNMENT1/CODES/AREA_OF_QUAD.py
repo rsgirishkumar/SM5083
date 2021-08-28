@@ -22,16 +22,32 @@ c=np.array([-2,4])
 d=np.array([-1,-5])
 
 
+#Direction Vectors
+print(b-a,c-b,d-c,a-d)
 
+# Area of Quadrilateral Function Definition
+def area_quad(a,b,c,d):
+  area_tri1 = area_triangle(a,b,c)
+  print(area_tri1)
+  area_tri2 = area_triangle(a,c,d)
+  print(area_tri2)
+  area_quad_val = area_tri1 + area_tri2
+  return area_quad_val
 
-
+#Determinant of Matrix
+def area_triangle(a,b,c):
+  det_matrix = np.array([[a[0],a[1],1],[b[0],b[1],1],[c[0],c[1],1]])
+  print(det_matrix)
+  area_tri = 0.5 * int(np.linalg.det(det_matrix))
+  return area_tri
+  #area_tri = 0.5 * det
 
 #LINE GENERATIONS FOR PLOT
 
 #SIDES OF A QUADRILATERAL
 
 x_ab = line_gen(a,b)
-print(x_ab)
+#print(x_ab)
 x_bc = line_gen(b,c)
 x_cd = line_gen(c,d)
 x_da = line_gen(d,a)
@@ -41,6 +57,14 @@ x_da = line_gen(d,a)
 x_ac = line_gen(a,c)
 x_bd = line_gen(b,d)
 
+#Area of a Quadrilateral Calculation after Collinearity Check
+area_abd = area_triangle(a,b,d)
+if(area_abd == 0):
+  print("Points A, B, and D are collinear. They dont form a Quadrilateral.")
+else:
+  area_val = area_quad(a,b,c,d)
+  print(area_val)
+  
 # PLOTTING THE LINES
 
 plt.plot(x_ab[0,:],x_ab[1,:], label="$AB$")
@@ -71,5 +95,5 @@ plt.axis('equal')
 plt.grid()
 plt.xlim(-10,10)
 plt.ylim(-10,10)
-plt.savefig('/home/user/txhome/storage/shared/github/training/math/figs/QUAD.png')
+plt.savefig('QUAD.png')
 plt.show()
