@@ -24,6 +24,16 @@ d=np.array([-1,-5])
 
 #Direction Vectors
 print(b-a,c-b,d-c,a-d)
+one_vec = np.array([[1],[1],[1]])
+print(one_vec)
+ab=np.vstack((b-a,d-b,a-d))
+print(ab)
+chk_matrix = np.concatenate((ab,one_vec), axis=1)
+#print(ab)
+#chk_matrix=np.vstack(([b-a,1],[a-d,1],[d-b,1])).T
+print(chk_matrix)
+rank_matrix = np.linalg.matrix_rank(chk_matrix)
+print(rank_matrix)
 
 # Area of Quadrilateral Function Definition
 def area_quad(a,b,c,d):
@@ -34,7 +44,7 @@ def area_quad(a,b,c,d):
   area_quad_val = area_tri1 + area_tri2
   return area_quad_val
 
-#Determinant of Matrix
+#Area of a triangle using Determinant of Matrix
 def area_triangle(a,b,c):
   det_matrix = np.array([[a[0],a[1],1],[b[0],b[1],1],[c[0],c[1],1]])
   print(det_matrix)
@@ -58,9 +68,8 @@ x_ac = line_gen(a,c)
 x_bd = line_gen(b,d)
 
 #Area of a Quadrilateral Calculation after Collinearity Check
-area_abd = area_triangle(a,b,d)
-if(area_abd == 0):
-  print("Points A, B, and D are collinear. They dont form a Quadrilateral.")
+if rank_matrix < 3: 
+    print("Points A, B, and D are collinear. They dont form a Quadrilateral.")
 else:
   area_val = area_quad(a,b,c,d)
   print(area_val)
@@ -88,10 +97,6 @@ for i, txt in enumerate(vert_labels):
 plt.xlabel('$x$')
 plt.ylabel('$y$')
 plt.legend(loc='best')
-plt.grid() # minor
-plt.axis('equal')
-
-#plt.plot(x_values,y_values)
 plt.grid()
 plt.xlim(-10,10)
 plt.ylim(-10,10)
