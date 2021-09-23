@@ -1,0 +1,549 @@
+\documentclass[journal,12pt,twocolumn]{IEEEtran}
+%
+\usepackage{setspace}
+\usepackage{gensymb}
+%\doublespacing
+\singlespacing
+
+%\usepackage{graphicx}
+%\usepackage{amssymb}
+%\usepackage{relsize}
+\usepackage[cmex10]{amsmath}
+%\usepackage{amsthm}
+%\interdisplaylinepenalty=2500
+%\savesymbol{iint}
+%\usepackage{txfonts}
+%\restoresymbol{TXF}{iint}
+%\usepackage{wasysym}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{txfonts}
+\usepackage{stfloats}
+\usepackage{steinmetz}
+\usepackage{bm}
+\usepackage{cite}
+\usepackage{cases}
+\usepackage{subfig}
+%\usepackage{xtab}
+\usepackage{longtable}
+\usepackage{multirow}
+%\usepackage{algorithm}
+%\usepackage{algpseudocode}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usepackage{verbatim}
+\usepackage{tfrupee}
+\usepackage[breaklinks=true]{hyperref}
+%\usepackage{stmaryrd}
+\usepackage{tkz-euclide} % loads  TikZ and tkz-base
+%\usetkzobj{all}
+\usepackage{listings}
+    \usepackage{color}                                            %%
+    \usepackage{array}                                            %%
+    \usepackage{longtable}                                        %%
+    \usepackage{calc}                                             %%
+    \usepackage{multirow}                                         %%
+    \usepackage{hhline}                                           %%
+    \usepackage{ifthen}                                           %%
+  %optionally (for landscape tables embedded in another document): %%
+    \usepackage{lscape}     
+\usepackage{multicol}
+\usepackage{chngcntr}
+%\usepackage{enumerate}
+
+%\usepackage{wasysym}
+%\newcounter{MYtempeqncnt}
+\DeclareMathOperator*{\Res}{Res}
+%\renewcommand{\baselinestretch}{2}
+\renewcommand\thesection{\arabic{section}}
+\renewcommand\thesubsection{\thesection.\arabic{subsection}}
+\renewcommand\thesubsubsection{\thesubsection.\arabic{subsubsection}}
+
+\renewcommand\thesectiondis{\arabic{section}}
+\renewcommand\thesubsectiondis{\thesectiondis.\arabic{subsection}}
+\renewcommand\thesubsubsectiondis{\thesubsectiondis.\arabic{subsubsection}}
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+\def\inputGnumericTable{}                                 %%
+
+\lstset{
+%language=C,
+frame=single, 
+breaklines=true,
+columns=fullflexible
+}
+%\lstset{
+%language=tex,
+%frame=single, 
+%breaklines=true
+%}
+
+\begin{document}
+%
+
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{problem}{Problem}
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{example}{Example}[section]
+\newtheorem{definition}[problem]{Definition}
+%\newtheorem{thm}{Theorem}[section] 
+%\newtheorem{defn}[thm]{Definition}
+%\newtheorem{algorithm}{Algorithm}[section]
+%\newtheorem{cor}{Corollary}
+\newcommand{\BEQA}{\begin{eqnarray}}
+\newcommand{\EEQA}{\end{eqnarray}}
+\newcommand{\define}{\stackrel{\triangle}{=}}
+\bibliographystyle{IEEEtran}
+%\bibliographystyle{ieeetr}
+\providecommand{\mbf}{\mathbf}
+\providecommand{\pr}[1]{\ensuremath{\Pr\left(#1\right)}}
+\providecommand{\qfunc}[1]{\ensuremath{Q\left(#1\right)}}
+\providecommand{\sbrak}[1]{\ensuremath{{}\left[#1\right]}}
+\providecommand{\lsbrak}[1]{\ensuremath{{}\left[#1\right.}}
+\providecommand{\rsbrak}[1]{\ensuremath{{}\left.#1\right]}}
+\providecommand{\brak}[1]{\ensuremath{\left(#1\right)}}
+\providecommand{\lbrak}[1]{\ensuremath{\left(#1\right.}}
+\providecommand{\rbrak}[1]{\ensuremath{\left.#1\right)}}
+\providecommand{\cbrak}[1]{\ensuremath{\left\{#1\right\}}}
+\providecommand{\lcbrak}[1]{\ensuremath{\left\{#1\right.}}
+\providecommand{\rcbrak}[1]{\ensuremath{\left.#1\right\}}}
+\theoremstyle{remark}
+\newtheorem{rem}{Remark}
+\newcommand{\sgn}{\mathop{\mathrm{sgn}}}
+\providecommand{\abs}[1]{\left\vert#1\right\vert}
+\providecommand{\res}[1]{\Res\displaylimits_{#1}} 
+\providecommand{\norm}[1]{\left\lVert#1\right\rVert}
+%\providecommand{\norm}[1]{\lVert#1\rVert}
+\providecommand{\mtx}[1]{\mathbf{#1}}
+\providecommand{\mean}[1]{E\left[ #1 \right]}
+\providecommand{\fourier}{\overset{\mathcal{F}}{ \rightleftharpoons}}
+%\providecommand{\hilbert}{\overset{\mathcal{H}}{ \rightleftharpoons}}
+\providecommand{\system}{\overset{\mathcal{H}}{ \longleftrightarrow}}
+	%\newcommand{\solution}[2]{\textbf{Solution:}{#1}}
+\newcommand{\solution}{\noindent \textbf{Solution: }}
+\newcommand{\cosec}{\,\text{cosec}\,}
+\providecommand{\dec}[2]{\ensuremath{\overset{#1}{\underset{#2}{\gtrless}}}}
+\newcommand{\myvec}[1]{\ensuremath{\begin{pmatrix}#1\end{pmatrix}}}
+\newcommand{\mydet}[1]{\ensuremath{\begin{vmatrix}#1\end{vmatrix}}}
+%\numberwithin{equation}{section}
+\numberwithin{equation}{subsection}
+%\numberwithin{problem}{section}
+%\numberwithin{definition}{section}
+\makeatletter
+\@addtoreset{figure}{problem}
+\makeatother
+\let\StandardTheFigure\thefigure
+\let\vec\mathbf
+%\renewcommand{\thefigure}{\theproblem.\arabic{figure}}
+\renewcommand{\thefigure}{\theproblem}
+%\setlist[enumerate,1]{before=\renewcommand\theequation{\theenumi.\arabic{equation}}
+%\counterwithin{equation}{enumi}
+%\renewcommand{\theequation}{\arabic{subsection}.\arabic{equation}}
+\def\putbox#1#2#3{\makebox[0in][l]{\makebox[#1][l]{}\raisebox{\baselineskip}[0in][0in]{\raisebox{#2}[0in][0in]{#3}}}}
+     \def\rightbox#1{\makebox[0in][r]{#1}}
+     \def\centbox#1{\makebox[0in]{#1}}
+     \def\topbox#1{\raisebox{-\baselineskip}[0in][0in]{#1}}
+     \def\midbox#1{\raisebox{-0.5\baselineskip}[0in][0in]{#1}}
+\vspace{3cm}
+\title{
+SM5083 - BASICS OF PROGRAMMING
+	}
+\author{ RS Girish - EE20RESCH14005$^{*}$% <-this % stops a space
+\thanks{*The author is with the Department
+		of Electrical Engineering, Indian Institute of Technology, Hyderabad
+		502285 India e-mail:  ee20resch14005@iith.ac.in. All content in this document is released under GNU GPL.  Free and open source.}
+	}
+\maketitle
+\newpage
+\tableofcontents
+\bigskip
+\renewcommand{\thefigure}{\theenumi}
+\renewcommand{\thetable}{\theenumi}
+\begin{abstract}
+This paper contains solution to problem no 5 of Examples III Section of Chapter III of Analytical Geometry by Hukum Chand.
+Links to Python codes are available below.  
+\end{abstract}
+Download python codes at 
+\begin{lstlisting}
+https://github.com/rsgirishkumar/SM5083/ASSIGNMENT2
+\end{lstlisting}
+\section{Problem}
+The opposite vertices of a square are $\myvec{0\\-1},\myvec{0\\3}$. Find the equations of four sides.
+\section{Solution}
+Let the given points are indicated as below\\
+\begin{align}
+\begin{split}
+\vec{A} = \myvec{0 \\ -1}, 
+\vec{C} = \myvec{0 \\ 3}.\\
+\end{split}
+\end{align}
+Let the unknown vertices are indicated as $ \vec{B},\vec{D}$. 
+\subsection{FINDING VERTICES USING AFFINE TRANSFORMATION}
+\textbf{Lemma}.
+If $\vec{A}=\myvec{x_1\\y_1} \text{and} \vec{C}=\myvec{x_2\\y_2}$ are two opposite vertices of a Square ABCD, then the other two vertices B and D can be found by using affine transformation principles(translation and rotation).
+\\
+\textbf{Proof:}
+\\
+Lets consider a square with origin($\vec{O}$) as a vertex and x, y - axes are two sides.  Let the other vertices be $\vec{F,G,H}$. The direction vectors of sides are given by $\vec{OF, FG, GH, HO}$ and the diagonal direction vectors are $\vec{OG, FH}$. Let the norm of the direction vectors of sides be $d$. The direction vectors are given by
+\begin{align}
+\begin{split}
+\vec{OF}=\myvec{d\\0},\vec{FG}=\myvec{0\\d},\vec{GH}=\myvec{-d\\0},\vec{HO}=\myvec{0\\-d}\\
+\vec{OG}=\vec{OF}+\vec{FG}=\myvec{d\\d}.\\
+\vec{FH}=\vec{FO}+\vec{OH}=\myvec{-d\\d}.\\
+||\vec{OF}||=||\vec{OG}||=||\vec{OH}||=||\vec{FG}||=d\\
+\end{split}
+\end{align}
+The angle between $\vec{OF}$(side) and $\vec{OG}$(diagonal) is  $\theta = 45^{o}$. and
+\begin{align}
+\begin{split}
+\vec{OF} = \vec{OG} cos(\theta).\\
+\Rightarrow\vec{OG} = \sqrt{2}.\vec{OF}
+\end{split}
+\end{align}
+The norm of diagonal direction vector is
+\begin{align}
+\begin{split}
+||\vec{OG}||=\sqrt{2}d=||\vec{FH}||.
+\end{split}
+\end{align}
+Let the Square that has to be formed with the vertices $\vec{A}$ and $\vec{C}$ denoted by $\vec{ABCD}$. To obtain $\vec{ABCD}$ from $\vec{OFGH}$ or viceversa, Affine transformation has to be applied.This eases out the process of finding the vertices.The step by step procedure involves
+\begin{enumerate}
+	\item Apply affine transformation steps i.e Translation and Rotation respectively of the given vertices $\vec{A}$ and $\vec{C}$ to shift square to the $\vec{OFGH}$ for the ease of solution. 
+	\item Find the translation vector $\vec{P}$ and rotation matrix $\vec{R}$.
+    \item Find the diagonal/Direction vector and norm of $\vec{A^{'}C^{'}}$.
+    \item Find the side direction vector and using norm and inspection method find the vertices $\vec{B^{'}}$ and $\vec{D^{'}}$.
+    \item Find the points $\vec{B}$ and $\vec{D}$ by using inspection method and reverse affine transformation i.e rotation and translation respectively.
+\end{enumerate}
+\textbf{Translation and Rotation}
+\\
+Let $\vec{P}$ be translation vector is given by 
+\begin{align}
+\begin{split}
+\vec{P} = \vec{O}-\vec{A} = \myvec{0\\0}-\myvec{x_1\\y_1}=\myvec{-x_1\\-y_1}
+\end{split}
+\end{align}
+and the angle to be rotated be $\theta$ for $\vec{AC}$ to align with $\vec{OG}$, then the angle $\theta$ and rotation matrix $\vec{R}$ is given by
+\begin{align}
+\begin{split}
+cos(\theta) = \frac{(\vec{C}-\vec{A})^T.1}{||(\vec{C}-\vec{A})^T||}\\
+\vec{C}-\vec{A} = \myvec{x_2-x_1\\y_2-y_1}\\
+||\vec{C}-\vec{A}|| = \sqrt{(x_2-x_1)^2+(y_2-y_1)^2}\\
+\end{split}
+\end{align}
+If a vector has to be rotated then it may be decreased or increased in length.
+Let’s say we have a vector $\myvec{x_1\\y_1}$.The norm of the vector $\myvec{x_1\\y_1}$ has length L.
+We rotate this vector anticlockwise around the origin by $\beta$ degrees. The rotated vector has coordinates $\myvec{x_1^{'}\\y_1^{'}}$.The rotated vector must also have length L. Call the angle between  $\myvec{x_1\\y_1}$ and the x-axis as $\alpha$. Then
+\begin{align}
+\begin{split}
+x_1= Lcos(\alpha)\\
+y_1= Lsin(\alpha)\\
+\end{split}
+\end{align}
+We rotate $\myvec{x_1\\y_1}$ by angle $\beta$ to get $\myvec{x_1^{'}\\y_1^{'}}$. So the angle between $\myvec{x_1^{'}\\y_1^{'}}$ and the x-axis is $\alpha+\beta$.
+\begin{align}
+\begin{split}
+x_1^{'}= Lcos(\alpha+\beta)=\\
+Lcos(\alpha)cos(\beta)-Lsin(\alpha)sin(\beta)\\
+=x_1cos(\beta)-y_1sin(\beta)\\
+y_1^{'}= Lsin(\alpha+\beta)=\\
+Lsin(\alpha)cos(\beta)+Lcos(\alpha)sin(\beta)\\
+=y_1cos(\beta)+x_1sin(\beta)\\
+\Rightarrow \myvec{x_1^{'}\\y_1^{'}}=\myvec{cos(\beta)&-sin(\beta)\\sin(\beta)&cos(\beta)}\myvec{x_1\\y_1}.\\
+\end{split}
+\end{align}
+Here the rotation angle is $\theta$. Hence the rotation matrix is given by
+\begin{align}
+\begin{split}
+\vec{R}=\myvec{cos(\theta) & -sin(\theta)\\sin(\theta) & cos(\theta)}\\ 
+\end{split}
+\end{align}
+\\
+The points can be obtained by using the generalized affine transformation principle as below
+\begin{align}
+\begin{split}
+\vec{A^{'}} = \vec{R}(\vec{A+P})=\myvec{cos(\theta) & -sin(\theta)\\sin(\theta) & cos(\theta)}\myvec{0\\0} = \myvec{0\\0} = \vec{O}\\
+\vec{C^{'}} = \vec{R}(\vec{C+P})=\myvec{cos(\theta) & -sin(\theta)\\sin(\theta) & cos(\theta)}\myvec{x_3-x_1\\y_3-y_1}\\
+\end{split}
+\end{align}
+\\
+\\
+The length of $\vec{A^{'}B^{'}}$ based on projection on to $\vec{A^{'}C^{'}}$ and the projection of $\vec{A^{'}C^{'}}$ on to $\vec{A^{'}B^{'}}$ is given by \\
+\begin{align}
+\begin{split}
+||\vec{A^{'}B^{'}}|| = ||\vec{A^{'}C^{'}}||cos(\theta)\\
+\vec{A^{'}B^{'}} = ||\vec{A^{'}B^{'}}||\vec{OF}\\
+\vec{B^{'}}=\vec{A^{'}B^{'}}+\vec{A^{'}}\\
+\end{split}
+\end{align}
+In the similar way, 
+\begin{align}
+\begin{split}
+||\vec{A^{'}D^{'}}|| = ||\vec{A^{'}C^{'}}||cos(\theta)\\
+\vec{A^{'}D^{'}} = ||\vec{A^{'}D^{'}}||\vec{OH}\\
+\vec{D^{'}}=\vec{A^{'}D^{'}}+\vec{A^{'}}\\
+\end{split}
+\end{align}
+By doing the reverse affine transformation, the Square $\vec{ABCD}$ can be obtained from $\vec{A^{'}B^{'}C^{'}D^{'}}$ by using the below transformation rules.Given\\
+\begin{align}
+\begin{split}
+\vec{A^{'}} = \vec{R}(\vec{A+P})\\
+\Rightarrow \frac{\vec{A^{'}}}{\vec{R}} = \vec{A+P}\\
+\Rightarrow \vec{A^{'}}\vec{R}^{-1} = \vec{A+P}\\
+\Rightarrow (\vec{A^{'}}\vec{R}^{-1})-\vec{P} = \vec{A}\\
+\end{split}
+\end{align}
+Hence\\
+\begin{align}
+\begin{split}
+\vec{A} = \vec{R^{-1}A^{'}}-\vec{P}\\
+\end{split}
+\end{align}
+In the similar way, since it is a square and all vertices make same angle of rotation, the generalization principle can be applied and it gives\\
+\begin{align}
+\begin{split}
+\vec{B} = \vec{R^{-1}B^{'}}-\vec{P}\\
+\vec{C} = \vec{R^{-1}C^{'}}-\vec{P}\\
+\vec{D} = \vec{R^{-1}D^{'}}-\vec{P}\\
+\text{where}\\
+\vec{R^{-1}} = \myvec{cos(-\theta)& -sin(-\theta)\\sin(-\theta)&cos(-\theta)} \ and\\
+\vec{P} = \vec{O} - \vec{A}.\\
+\end{split}
+\end{align}
+Hence proved.
+\bigskip
+\begin{figure}
+	\centering
+    \resizebox{\columnwidth}{!}{
+	\begin{tikzpicture}
+		\draw[step=1cm,gray,very thin] (-5,-5) grid (5,5);
+		\draw[thick,->] (-5,0) -- (5,0) node[anchor=north west] {x axis};
+		\draw[thick,->] (0,-5) -- (0,5) node[anchor=south east] {y axis};
+		\foreach \x in {-5,-4,-3,-2,-1,0,1,2,3,4}
+   			\draw (\x cm,1pt) -- (\x cm,-1pt) node[anchor=north] {$\x$};
+		\foreach \y in {-5,-4,-3,-2,-1,0,1,2,3,4}
+    		\draw (1pt,\y cm) -- (-1pt,\y cm) node[anchor=east] {$\y$};
+		\draw [->] (0,-1) -- (2,1);
+		\draw [->] (2,1) -- (0,3);
+		\draw [->] (0,3) -- (-2,1);
+		\draw [->] (-2,1) -- (0,-1);
+		\draw [thick, ->] (0,-1) node[anchor=south] {$A$};
+		\draw [thick, ->] (2,1) node[anchor=south] {$B$};
+		\draw [thick, ->] (0,3) node[anchor=west] {$C$};
+		\draw [thick, ->] (-2,1) node[anchor=west] {$D$};
+		\draw [->] (0,0) -- (2.828,0);
+		\draw [->] (2.828,0) -- (2.828,2.828);
+		\draw [->] (2.828,2.828) -- (0,2.828);
+		\draw [->] (0,2.828) -- (0,0);
+		\draw [->] (0,0) -- (2.828,2.828);
+		\draw [thick, ->] (0,0) node[anchor=south] {$A^{'}/O$};
+		\draw [thick, ->] (2.828,0) node[anchor=south] {$B^{'}/F$};
+		\draw [thick, ->] (2.828,2.828) node[anchor=west] {$C^{'}/G$};
+		\draw [thick, ->] (0,2.828) node[anchor=west] {$D^{'}/H$};
+		\draw (1.5,0.5) .. controls (1.8,0.4)..(2,0);
+		\draw [thick] (1.9,0.3) node[anchor=south] {$\theta$};
+		\end{tikzpicture}
+	}
+	\caption{SQUARE ABCD and OFGH/A'B'C'D'}
+    \label{fig:SQUARE ABCD and OFGH/A'B'C'D'}
+\end{figure}
+\\
+\subsection{SOLUTION TO PROBLEM}
+Diagonal(Direction Vector) $\vec{AC} = \vec{C}-\vec{A} $  is given by
+\begin{align}
+\begin{split}
+\vec{AC} = \myvec{0 - 0\\3 - (-1)} = \myvec{0\\4}.\\
+\end{split}
+\end{align}
+\\
+Translation for $\vec{A}$ to $\vec{O}$ requries a translation vector $ \vec{P}=\myvec{0\\1}$.
+\begin{align}
+\begin{split}
+\Rightarrow
+\vec{A^{'}} = \myvec{0 \\ -1}  + \myvec{0\\1} = \myvec{0\\0} &\\
+\vec{C^{'}} = \myvec{0 \\ 3} + \myvec{0\\1} = \myvec{0\\4}.\\
+\vec{A^{'}C^{'}} = \myvec{0 - 0\\4- 0} = \myvec{0\\4}.\\
+\end{split}
+\end{align}
+\\
+Norm of $\vec{A^{'}C^{'}}$
+\begin{align}
+\begin{split}
+\Vert\vec{A^{'}C^{'}}\Vert = \sqrt{(2\sqrt{2})^{2}+(2\sqrt{2})^{2}} = 4
+\end{split}
+\end{align}
+\\
+The rotation is by $45^{o}$ clock wise. The rotation matrix is given by 
+\begin{align}
+\begin{split}
+\myvec{cos(-45^{o}) & -sin(-45^{o})\\sin(-45^{o}) & cos(-45^{o})}\\ 
+\Rightarrow \vec{A^{'}C^{'}} =   \myvec{\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\ -\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}}} \myvec{0 \\ 4}= \myvec{2\sqrt{2}\\2\sqrt{2}}\\
+\vec{C^{'}}=\vec{A^{'}C^{'}}+\vec{A^{'}}=\myvec{2\sqrt{2}\\2\sqrt{2}}\\
+\end{split}
+\end{align}
+\\
+The line equation of $\vec{A^{'}C^{'}}$ is x-y=0 or simply x=y.\\
+By inspection method,
+using length of a side, the vertices $\vec{B^{'}}$ and $\vec{D^{'}}$ can be found.\\
+\begin{align}
+\begin{split}
+\Vert\vec{A^{'}B^{'}}\Vert = \frac{\Vert\vec{A^{'}C^{'}}\Vert}{\sqrt{2}} = \frac{4}{\sqrt{2}}=2\sqrt{2}.\\
+Also, \vec{OF} = \myvec{1\\0}\\
+\vec{A^{'}B^{'}} = \Vert\vec{A^{'}B^{'}}\Vert\vec{OF}=2\sqrt{2}*\myvec{1\\0}=\myvec{2\sqrt{2}\\0}.\\
+\vec{B^{'}} = \vec{A^{'}B^{'}}+\vec{A^{'}}=\myvec{2\sqrt{2}\\0}\\
+\end{split}
+\end{align}
+\begin{align}
+\begin{split}
+\Vert\vec{A^{'}D^{'}}\Vert = \frac{\Vert\vec{A^{'}C^{'}}\Vert}{\sqrt{2}} = \frac{4}{\sqrt{2}}=2\sqrt{2}.\\
+Also, \vec{OH} = \myvec{0\\1}\\
+\vec{A^{'}D^{'}} = \Vert\vec{A^{'}D^{'}}\Vert\vec{OH}=2\sqrt{2}*\myvec{0\\1}=\myvec{0\\2\sqrt{2}}.\\
+\vec{D^{'}} = \vec{A^{'}D^{'}}+\vec{A^{'}}=\myvec{0\\2\sqrt{2}}\\
+\end{split}
+\end{align}
+\\
+Hence the obtained vertices are 
+\begin{align}
+\begin{split}
+\vec{A^{'}} = \myvec{0 \\ 0},
+\vec{B^{'}} = \myvec{2\sqrt{2}\\0}
+\vec{C^{'}} = \myvec{2\sqrt{2}\\2\sqrt{2}}.
+\vec{D^{'}} = \myvec{0\\2\sqrt{2}}.
+\end{split}
+\end{align}
+\subsection{USING REVERSE AFFINE TRANSFORMATION}
+The rotation is by $45^{o}$ counter clock wise i.e. $\theta = 45^{o}$. The inverse of rotation matrix $\vec{R}$ is given by 
+\begin{align}
+\begin{split}
+\vec{R^{-1}} = \frac{1}{1}\myvec{\frac{1}{\sqrt{2}}&-\frac{1}{\sqrt{2}}\\\frac{1}{\sqrt{2}}&\frac{1}{\sqrt{2}}}\\
+\end{split}
+\end{align} and the translation vector is $\vec{-P}$.
+From above reverse affine transformation rules,
+\begin{align}
+\begin{split}
+\vec{A} = \myvec{\frac{1}{\sqrt{2}}&-\frac{1}{\sqrt{2}}\\\frac{1}{\sqrt{2}}&\frac{1}{\sqrt{2}}}\myvec{0 \\ 0}  + \myvec{0\\-1} = \myvec{0\\-1}\\
+\vec{B} = \myvec{\frac{1}{\sqrt{2}}&-\frac{1}{\sqrt{2}}\\\frac{1}{\sqrt{2}}&\frac{1}{\sqrt{2}}}\myvec{2\sqrt{2} \\ 0}  + \myvec{0\\-1} = \myvec{2\\1}\\
+\vec{C} = \myvec{\frac{1}{\sqrt{2}}&-\frac{1}{\sqrt{2}}\\\frac{1}{\sqrt{2}}&\frac{1}{\sqrt{2}}}\myvec{2\sqrt{2} \\ 2\sqrt{2}} + \myvec{0\\-1} = \myvec{0\\3}.\\
+\vec{D} = \myvec{\frac{1}{\sqrt{2}}&-\frac{1}{\sqrt{2}}\\\frac{1}{\sqrt{2}}&\frac{1}{\sqrt{2}}}\myvec{0 \\ 2\sqrt{2}}  + \myvec{0\\-1} = \myvec{-2\\1}\\
+\end{split}
+\end{align}
+\subsection{LINE EQUATIONS}
+Coordinates are
+\\
+\begin{align}
+\begin{split}
+\vec{A} = \myvec{0 \\ -1},
+\vec{B} =\myvec{-2\\1} ,
+\vec{C} = \myvec{0 \\ 3},
+\vec{D} =\myvec{2\\1}.
+\end{split}
+\end{align}
+In Matrix form, if $\myvec{X_1\\Y_1} \&  \myvec{X_2\\Y_2}$ are the points given then the directional vector is given by \\$\myvec{X_2-X_1\\ Y_2-Y_1}$ \\then, 
+the form of equation ax+by+c=0 can be written as\\ 
+\begin{align}
+\begin{split}
+a= \vec{Y_2-Y_1},\\ b=-(\vec{X_2-X_1}),\\ c = \myvec{\vec{Y_2}&-\vec{X_2}} \myvec{\vec{X_2-X_1}\\\vec{ Y_2-Y_1}}
+\end{split}
+\end{align}
+\\
+\\
+By using the same, the line equation $\vec{AB}$ for points $\vec{A} = \myvec{0\\-1},\vec{B}=\myvec{-2\\1}$ is as follows:
+\\
+\begin{align}
+\begin{split}
+\vec{AB} = \myvec{-2\\2}\\
+a=2,\ b=2,\\
+c=\myvec{-1 & 0} \myvec{-2\\2}=2\\
+\end{split}
+\end{align}
+Line equation for $\vec{AB}$
+\begin{align}
+\begin{split}
+\Rightarrow\ 2x+2y+2=0 \ or \ x+y=-1. \\
+\end{split}
+\end{align}
+In vector form
+\begin{align}
+\begin{split}
+\Rightarrow \myvec{1&1}\ \vec{X}=-1\\
+\end{split}
+\end{align}
+\\
+The line equation $\vec{BC}$ for points $\vec{B} = \myvec{-2\\1},\vec{C}=\myvec{0\\3}$ is as follows:
+\\
+\begin{align}
+\begin{split}
+\vec{BC} = \myvec{2\\2}\\
+a=2,\ b=-2,\\
+c=\myvec{1 & 2} \myvec{2\\2}=6\\
+\end{split}
+\end{align}
+Line equation for $\vec{BC}$
+\begin{align}
+\begin{split}
+\Rightarrow\ 2x-2y+6=0 \ or \ x-y=-3. \\
+\end{split}
+\end{align}
+In vector form
+\begin{align}
+\begin{split}
+\Rightarrow \myvec{1&-1}\ \vec{X}=-3
+\end{split}
+\end{align}
+\\
+The line equation $\vec{CD}$ for points $\vec{C}=\myvec{0\\3},\vec{D} = \myvec{2\\1}$ is as follows:
+\\
+\begin{align}
+\begin{split}
+\vec{CD} = \myvec{2\\-2}\\
+a=-2,\ b=-2,\\
+c=\myvec{3 & 0} \myvec{2\\-2}=6\\
+\end{split}
+\end{align}
+Line equation for $\vec{CD}$
+\begin{align}
+\begin{split}
+ \Rightarrow\ -2x-2y+6=0 \ or \ x+y=3. \\
+\end{split}
+\end{align}
+In vector form
+\begin{align}
+\begin{split}
+\Rightarrow \myvec{1&1}\ \vec{X}=3
+\end{split}
+\end{align}
+\\
+The line equation $\vec{DA}$ for points $\vec{D} = \myvec{2\\1}, \vec{A} = \myvec{0\\-1}$ is as follows:\\
+\begin{align}
+\begin{split}
+\vec{DA} = \myvec{-2\\-2}\\
+a=-2,\ b=2,\\
+c=\myvec{1 & -2} \myvec{-2\\-2}=2\\
+\end{split}
+\end{align}
+Line equation for $\vec{DA}$
+\begin{align}
+\begin{split}
+\Rightarrow\ -2x+2y+2=0 \ or \ x-y=1. \\
+\end{split}
+\end{align}
+In vector form
+\begin{align}
+\begin{split}
+\Rightarrow \myvec{1&-1}\ \vec{X}=1
+\end{split}
+\end{align}.
+\\
+The plotted graph is shown as below.
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\columnwidth]{assignment2_using affine.png}
+    \caption{Square ABCD}
+    \label{fig:Square ABCD}
+\end{figure}
+\end{document}
