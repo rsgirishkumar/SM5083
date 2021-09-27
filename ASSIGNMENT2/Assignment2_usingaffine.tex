@@ -186,24 +186,24 @@ Let the given points are indicated as below\\
 Let the unknown vertices are indicated as $ \vec{B},\vec{D}$. 
 \subsection{FINDING VERTICES USING AFFINE TRANSFORMATION}
 \textbf{Lemma}.
-If $\vec{A}=\myvec{x_1\\y_1} \text{and} \vec{C}=\myvec{x_2\\y_2}$ are two opposite vertices of a Square ABCD, then the other two vertices B and D can be found by using affine transformation principles(translation and rotation).
+If $\vec{A} \text{and} \vec{C}$ are two opposite vertices of a Square ABCD, then the other two vertices are given by
+\begin{align}
+\begin{split}
+\vec{B} = \vec{R^{-1}B^{'}}-\vec{P}\\
+\vec{D} = \vec{R^{-1}D^{'}}-\vec{P}\\
+\text{where}\\
+\vec{R^{-1}} = \myvec{\cos (-\theta) & -\sin (-\theta) \\ \sin (-\theta) & \cos (-\theta)} \ \text{and}\\
+\vec{P} = \vec{O} - \vec{A}.\\
+\end{split}
+\end{align}
 \\
 \textbf{Proof:}
 \\
-Lets consider a square with origin($\vec{O}$) as a vertex and x, y - axes are two sides.  Let the other vertices be $\vec{F,G,H}$. The direction vectors of sides are given by $\vec{OF, FG, GH, HO}$ and the diagonal direction vectors are $\vec{OG, FH}$. Let the norm of the direction vectors of sides be $d$. The direction vectors are given by
+Lets consider a square $\vec{OFGH}$ with origin($\vec{O}$) as a vertex and x, y - axes are two sides.  Let the norm of the direction vectors of sides be $d$.The angle between $\vec{F}-\vec{O}$(side) and $\vec{G}-\vec{O}$(diagonal) is  $\theta = 45^{o}$. and
 \begin{align}
 \begin{split}
-\vec{OF}=\myvec{d\\0},\vec{FG}=\myvec{0\\d},\vec{GH}=\myvec{-d\\0},\vec{HO}=\myvec{0\\-d}\\
-\vec{OG}=\vec{OF}+\vec{FG}=\myvec{d\\d}.\\
-\vec{FH}=\vec{FO}+\vec{OH}=\myvec{-d\\d}.\\
-||\vec{OF}||=||\vec{OG}||=||\vec{OH}||=||\vec{FG}||=d\\
-\end{split}
-\end{align}
-The angle between $\vec{OF}$(side) and $\vec{OG}$(diagonal) is  $\theta = 45^{o}$. and
-\begin{align}
-\begin{split}
-\vec{OF} = \vec{OG} cos(\theta).\\
-\Rightarrow\vec{OG} = \sqrt{2}.\vec{OF}
+\vec{F}-\vec{O} = \frac{(\vec{G}-\vec{O})^T\myvec{1\\0}}{\Vert(\vec{G}-\vec{O})^T\Vert}\\
+\Rightarrow \vec{G}-\vec{O} = \sqrt{2}(\vec{F}-\vec{O})\\
 \end{split}
 \end{align}
 The norm of diagonal direction vector is
@@ -212,111 +212,94 @@ The norm of diagonal direction vector is
 ||\vec{OG}||=\sqrt{2}d=||\vec{FH}||.
 \end{split}
 \end{align}
-Let the Square that has to be formed with the vertices $\vec{A}$ and $\vec{C}$ denoted by $\vec{ABCD}$. To obtain $\vec{ABCD}$ from $\vec{OFGH}$ or viceversa, Affine transformation has to be applied.This eases out the process of finding the vertices.The step by step procedure involves
+The direction vectors are given by
+\begin{align}
+\begin{split}
+\vec{F}-\vec{O}=\myvec{d\\0},\vec{G}-\vec{F}=\myvec{0\\d},\\ \vec{H}-\vec{G}=\myvec{-d\\0},\vec{O}-\vec{H}=\myvec{0\\-d}\\
+\vec{G}-\vec{O}=\myvec{d\\d}.\\
+\vec{H}-\vec{F}=\myvec{-d\\d}.\\
+\end{split}
+\end{align}
+Let the Square $\vec{ABCD}$ has two vertices $\vec{A}$ and $\vec{C}$ . By using inspection method, Affine transformation has to be applied for $\vec{B}$ and $\vec{D}$.The step by step procedure involves
 \begin{enumerate}
-	\item Apply affine transformation steps i.e Translation and Rotation respectively of the given vertices $\vec{A}$ and $\vec{C}$ to shift square to the $\vec{OFGH}$ for the ease of solution. 
+	\item Apply affine transformation steps i.e Translation and Rotation respectively of the given vertices $\vec{A}$ and $\vec{C}$ to shift square to the $\vec{OFGH}$ 
 	\item Find the translation vector $\vec{P}$ and rotation matrix $\vec{R}$.
     \item Find the diagonal/Direction vector and norm of $\vec{A^{'}C^{'}}$.
     \item Find the side direction vector and using norm and inspection method find the vertices $\vec{B^{'}}$ and $\vec{D^{'}}$.
     \item Find the points $\vec{B}$ and $\vec{D}$ by using inspection method and reverse affine transformation i.e rotation and translation respectively.
 \end{enumerate}
 \textbf{Translation and Rotation}
-\\
 Let $\vec{P}$ be translation vector is given by 
 \begin{align}
 \begin{split}
-\vec{P} = \vec{O}-\vec{A} = \myvec{0\\0}-\myvec{x_1\\y_1}=\myvec{-x_1\\-y_1}
-\end{split}
+\vec{P} = \vec{O}-\vec{A}\\
+\cos \theta = \frac{(\vec{C}-\vec{A})^T \vec{OG}}{\Vert(\vec{C}-\vec{A})^T\Vert}
+    \end{split}
 \end{align}
-and the angle to be rotated be $\theta$ for $\vec{AC}$ to align with $\vec{OG}$, then the angle $\theta$ and rotation matrix $\vec{R}$ is given by
+\subsection{For Rotation Matrix R}
+Consider a vector $\myvec{x_1\\y_1}$ and the norm is L.
+If vector is rotated anticlockwise around the origin by $\beta$ degrees then the new vector be $\myvec{x_1^{'}\\y_1^{'}}$. Call the angle between  $\myvec{x_1\\y_1}$ and the x-axis as $\alpha$. Then
 \begin{align}
 \begin{split}
-cos(\theta) = \frac{(\vec{C}-\vec{A})^T.1}{||(\vec{C}-\vec{A})^T||}\\
-\vec{C}-\vec{A} = \myvec{x_2-x_1\\y_2-y_1}\\
-||\vec{C}-\vec{A}|| = \sqrt{(x_2-x_1)^2+(y_2-y_1)^2}\\
+x_1= L\ \cos \alpha\\
+y_1= L\ \sin \alpha\\
 \end{split}
 \end{align}
-If a vector has to be rotated then it may be decreased or increased in length.
-Let’s say we have a vector $\myvec{x_1\\y_1}$.The norm of the vector $\myvec{x_1\\y_1}$ has length L.
-We rotate this vector anticlockwise around the origin by $\beta$ degrees. The rotated vector has coordinates $\myvec{x_1^{'}\\y_1^{'}}$.The rotated vector must also have length L. Call the angle between  $\myvec{x_1\\y_1}$ and the x-axis as $\alpha$. Then
+So the angle between $\myvec{x_1^{'}\\y_1^{'}}$ and the x-axis is $\alpha+\beta$.
 \begin{align}
 \begin{split}
-x_1= Lcos(\alpha)\\
-y_1= Lsin(\alpha)\\
-\end{split}
-\end{align}
-We rotate $\myvec{x_1\\y_1}$ by angle $\beta$ to get $\myvec{x_1^{'}\\y_1^{'}}$. So the angle between $\myvec{x_1^{'}\\y_1^{'}}$ and the x-axis is $\alpha+\beta$.
-\begin{align}
-\begin{split}
-x_1^{'}= Lcos(\alpha+\beta)=\\
-Lcos(\alpha)cos(\beta)-Lsin(\alpha)sin(\beta)\\
-=x_1cos(\beta)-y_1sin(\beta)\\
-y_1^{'}= Lsin(\alpha+\beta)=\\
-Lsin(\alpha)cos(\beta)+Lcos(\alpha)sin(\beta)\\
-=y_1cos(\beta)+x_1sin(\beta)\\
-\Rightarrow \myvec{x_1^{'}\\y_1^{'}}=\myvec{cos(\beta)&-sin(\beta)\\sin(\beta)&cos(\beta)}\myvec{x_1\\y_1}.\\
+x_1^{'}= L\ \cos (\alpha+\beta)=\\
+L\ \cos \alpha \cos \beta-L\ \sin \alpha \sin \beta\\
+=x_1\cos \beta-y_1\sin \beta.\\
+y_1^{'}= L\ \sin (\alpha+\beta)=\\
+L\sin \alpha \cos \beta+L\ \cos \alpha \sin \beta\\
+=y_1\cos \beta+x_1\sin \beta.\\
+\Rightarrow \myvec{x_1^{'}\\y_1^{'}}=\myvec{\cos \beta & -\sin \beta\\\sin \beta & \cos \beta}\myvec{x_1\\y_1}.\\
 \end{split}
 \end{align}
 Here the rotation angle is $\theta$. Hence the rotation matrix is given by
 \begin{align}
 \begin{split}
-\vec{R}=\myvec{cos(\theta) & -sin(\theta)\\sin(\theta) & cos(\theta)}\\ 
+\vec{R}=\myvec{\cos \theta & -\sin \theta\\\sin \theta & \cos \theta}\\ 
 \end{split}
 \end{align}
-\\
-The points can be obtained by using the generalized affine transformation principle as below
+The generalized affine transformation principles are as below
 \begin{align}
 \begin{split}
-\vec{A^{'}} = \vec{R}(\vec{A+P})=\myvec{cos(\theta) & -sin(\theta)\\sin(\theta) & cos(\theta)}\myvec{0\\0} = \myvec{0\\0} = \vec{O}\\
-\vec{C^{'}} = \vec{R}(\vec{C+P})=\myvec{cos(\theta) & -sin(\theta)\\sin(\theta) & cos(\theta)}\myvec{x_3-x_1\\y_3-y_1}\\
-\end{split}
-\end{align}
+\vec{A^{'}} = \vec{R}(\vec{A+P})=\myvec{\cos \theta & -\sin \theta\\\sin \theta & \cos \theta}\myvec{0\\0} = \myvec{0\\0} = \vec{O}.\\
+\vec{C^{'}} = \vec{R}(\vec{C+P})=\myvec{\cos \theta & -\sin \theta\\\sin \theta & \cos \theta}\myvec{x_3-x_1\\y_3-y_1}.\\
 \\
-\\
-The length of $\vec{A^{'}B^{'}}$ based on projection on to $\vec{A^{'}C^{'}}$ and the projection of $\vec{A^{'}C^{'}}$ on to $\vec{A^{'}B^{'}}$ is given by \\
-\begin{align}
-\begin{split}
-||\vec{A^{'}B^{'}}|| = ||\vec{A^{'}C^{'}}||cos(\theta)\\
-\vec{A^{'}B^{'}} = ||\vec{A^{'}B^{'}}||\vec{OF}\\
 \vec{B^{'}}=\vec{A^{'}B^{'}}+\vec{A^{'}}\\
-\end{split}
-\end{align}
-In the similar way, 
-\begin{align}
-\begin{split}
-||\vec{A^{'}D^{'}}|| = ||\vec{A^{'}C^{'}}||cos(\theta)\\
-\vec{A^{'}D^{'}} = ||\vec{A^{'}D^{'}}||\vec{OH}\\
+\text{where }
+\vec{A^{'}B^{'}} = ||\vec{A^{'}B^{'}}||(\vec{F}-\vec{O}).\\
 \vec{D^{'}}=\vec{A^{'}D^{'}}+\vec{A^{'}}\\
+\text{where }
+\vec{A^{'}D^{'}} = ||\vec{A^{'}D^{'}}||(\vec{H}-\vec{O}).
 \end{split}
 \end{align}
+\subsection{Reverse Affine Transformation}
 By doing the reverse affine transformation, the Square $\vec{ABCD}$ can be obtained from $\vec{A^{'}B^{'}C^{'}D^{'}}$ by using the below transformation rules.Given\\
 \begin{align}
 \begin{split}
 \vec{A^{'}} = \vec{R}(\vec{A+P})\\
-\Rightarrow \frac{\vec{A^{'}}}{\vec{R}} = \vec{A+P}\\
 \Rightarrow \vec{A^{'}}\vec{R}^{-1} = \vec{A+P}\\
 \Rightarrow (\vec{A^{'}}\vec{R}^{-1})-\vec{P} = \vec{A}\\
+\text{Hence }
+\vec{A} = \vec{R^{-1}A^{'}}-\vec{P}
 \end{split}
 \end{align}
-Hence\\
-\begin{align}
-\begin{split}
-\vec{A} = \vec{R^{-1}A^{'}}-\vec{P}\\
-\end{split}
-\end{align}
-In the similar way, since it is a square and all vertices make same angle of rotation, the generalization principle can be applied and it gives\\
+The generalization principle can be applied to other vertices also as below\\
 \begin{align}
 \begin{split}
 \vec{B} = \vec{R^{-1}B^{'}}-\vec{P}\\
 \vec{C} = \vec{R^{-1}C^{'}}-\vec{P}\\
 \vec{D} = \vec{R^{-1}D^{'}}-\vec{P}\\
 \text{where}\\
-\vec{R^{-1}} = \myvec{cos(-\theta)& -sin(-\theta)\\sin(-\theta)&cos(-\theta)} \ and\\
-\vec{P} = \vec{O} - \vec{A}.\\
+\vec{R^{-1}} = \myvec{\cos (-\theta)& -\sin (-\theta)\\\sin (-\theta) & \cos (-\theta)} \ and\\
+\vec{P} = \vec{O} - \vec{A}.
 \end{split}
 \end{align}
 Hence proved.
-\bigskip
 \begin{figure}
 	\centering
     \resizebox{\columnwidth}{!}{
@@ -352,61 +335,52 @@ Hence proved.
 	\caption{SQUARE ABCD and OFGH/A'B'C'D'}
     \label{fig:SQUARE ABCD and OFGH/A'B'C'D'}
 \end{figure}
-\\
 \subsection{SOLUTION TO PROBLEM}
 Diagonal(Direction Vector) $\vec{AC} = \vec{C}-\vec{A} $  is given by
 \begin{align}
 \begin{split}
-\vec{AC} = \myvec{0 - 0\\3 - (-1)} = \myvec{0\\4}.\\
+\vec{AC} = \myvec{0 - 0\\3 - (-1)} = \myvec{0\\4}.
 \end{split}
 \end{align}
-\\
-Translation for $\vec{A}$ to $\vec{O}$ requries a translation vector $ \vec{P}=\myvec{0\\1}$.
+Translation for $\vec{A}$ to $\vec{O}$ requires a translation vector $ \vec{P}=\myvec{0\\1}$.
 \begin{align}
 \begin{split}
 \Rightarrow
 \vec{A^{'}} = \myvec{0 \\ -1}  + \myvec{0\\1} = \myvec{0\\0} &\\
 \vec{C^{'}} = \myvec{0 \\ 3} + \myvec{0\\1} = \myvec{0\\4}.\\
-\vec{A^{'}C^{'}} = \myvec{0 - 0\\4- 0} = \myvec{0\\4}.\\
+\vec{A^{'}C^{'}} = \myvec{0 - 0\\4- 0} = \myvec{0\\4}.
 \end{split}
 \end{align}
-\\
 Norm of $\vec{A^{'}C^{'}}$
 \begin{align}
 \begin{split}
 \Vert\vec{A^{'}C^{'}}\Vert = \sqrt{(2\sqrt{2})^{2}+(2\sqrt{2})^{2}} = 4
 \end{split}
 \end{align}
-\\
 The rotation is by $45^{o}$ clock wise. The rotation matrix is given by 
 \begin{align}
 \begin{split}
-\myvec{cos(-45^{o}) & -sin(-45^{o})\\sin(-45^{o}) & cos(-45^{o})}\\ 
+\myvec{\cos (-45^{o}) & -\sin (-45^{o})\\\sin (-45^{o}) & \cos (-45^{o})}\\ 
 \Rightarrow \vec{A^{'}C^{'}} =   \myvec{\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\ -\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}}} \myvec{0 \\ 4}= \myvec{2\sqrt{2}\\2\sqrt{2}}\\
-\vec{C^{'}}=\vec{A^{'}C^{'}}+\vec{A^{'}}=\myvec{2\sqrt{2}\\2\sqrt{2}}\\
+\vec{C^{'}}=\vec{A^{'}C^{'}}+\vec{A^{'}}=\myvec{2\sqrt{2}\\2\sqrt{2}}
 \end{split}
 \end{align}
-\\
 The line equation of $\vec{A^{'}C^{'}}$ is x-y=0 or simply x=y.\\
-By inspection method,
-using length of a side, the vertices $\vec{B^{'}}$ and $\vec{D^{'}}$ can be found.\\
 \begin{align}
 \begin{split}
-\Vert\vec{A^{'}B^{'}}\Vert = \frac{\Vert\vec{A^{'}C^{'}}\Vert}{\sqrt{2}} = \frac{4}{\sqrt{2}}=2\sqrt{2}.\\
-Also, \vec{OF} = \myvec{1\\0}\\
-\vec{A^{'}B^{'}} = \Vert\vec{A^{'}B^{'}}\Vert\vec{OF}=2\sqrt{2}*\myvec{1\\0}=\myvec{2\sqrt{2}\\0}.\\
+\Vert\vec{A^{'}B^{'}}\Vert =\Vert\vec{A^{'}D^{'}}\Vert \frac{\Vert\vec{A^{'}C^{'}}\Vert}{\sqrt{2}} = \frac{4}{\sqrt{2}}=2\sqrt{2}.\\
+\text{Also}, \vec{F}-\vec{O} = \myvec{1\\0}\\
+\vec{A^{'}B^{'}} = \Vert\vec{A^{'}B^{'}}\Vert(\vec{F}-\vec{O)}=2\sqrt{2}\myvec{1\\0}=\myvec{2\sqrt{2}\\0}.\\
 \vec{B^{'}} = \vec{A^{'}B^{'}}+\vec{A^{'}}=\myvec{2\sqrt{2}\\0}\\
 \end{split}
 \end{align}
 \begin{align}
 \begin{split}
-\Vert\vec{A^{'}D^{'}}\Vert = \frac{\Vert\vec{A^{'}C^{'}}\Vert}{\sqrt{2}} = \frac{4}{\sqrt{2}}=2\sqrt{2}.\\
-Also, \vec{OH} = \myvec{0\\1}\\
-\vec{A^{'}D^{'}} = \Vert\vec{A^{'}D^{'}}\Vert\vec{OH}=2\sqrt{2}*\myvec{0\\1}=\myvec{0\\2\sqrt{2}}.\\
+\text{Also,} \vec{H}-\vec{O} = \myvec{0\\1}\\
+\vec{A^{'}D^{'}} = \Vert\vec{A^{'}D^{'}}\Vert(\vec{H}-\vec{O})=2\sqrt{2}\myvec{0\\1}=\myvec{0\\2\sqrt{2}}.\\
 \vec{D^{'}} = \vec{A^{'}D^{'}}+\vec{A^{'}}=\myvec{0\\2\sqrt{2}}\\
 \end{split}
 \end{align}
-\\
 Hence the obtained vertices are 
 \begin{align}
 \begin{split}
@@ -434,7 +408,6 @@ From above reverse affine transformation rules,
 \end{align}
 \subsection{LINE EQUATIONS}
 Coordinates are
-\\
 \begin{align}
 \begin{split}
 \vec{A} = \myvec{0 \\ -1},
