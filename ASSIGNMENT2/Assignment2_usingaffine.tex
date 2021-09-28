@@ -199,11 +199,11 @@ If $\vec{A} \text{and} \vec{C}$ are two opposite vertices of a Square ABCD, then
 \\
 \textbf{Proof:}
 \\
-Lets consider a square $\vec{OFGH}$ with origin($\vec{O}$) as one of the vertices and x, y - axes are two sides.  Let the norm of the direction vectors of sides be $d$.The angle between $\vec{F}-\vec{O}$(side) and $\vec{G}-\vec{O}$(diagonal) is  $\theta = 45^{o}$. and
+Lets consider a square $\vec{OFGH}$ with origin($\vec{O}$) as one of the vertices and x, y - axes are two sides.  Let the norm of the direction vectors of sides be $d$.The angle between $\vec{F}$(side) and $\vec{G}$(diagonal) is  $\theta = 45^{o}$. and
 \begin{align}
 \begin{split}
-\vec{F}-\vec{O} = \frac{(\vec{G}-\vec{O})^T\myvec{1\\0}}{\Vert(\vec{G}-\vec{O})^T\Vert}\\
-\Rightarrow \vec{G}-\vec{O} = \sqrt{2}(\vec{F}-\vec{O})\\
+\vec{F} = \frac{(\vec{G})^T\myvec{1\\0}}{\Vert(\vec{G})^T\Vert}\\
+\Rightarrow \vec{G} = \sqrt{2}(\vec{F})\\
 \end{split}
 \end{align}
 The norm of diagonal direction vector is
@@ -215,8 +215,8 @@ The norm of diagonal direction vector is
 The direction vectors are given by
 \begin{align}
 \begin{split}
-\vec{F}-\vec{O}=\myvec{d\\0},\vec{G}-\vec{F}=\myvec{0\\d},\\ \vec{H}-\vec{G}=\myvec{-d\\0},\vec{O}-\vec{H}=\myvec{0\\-d}\\
-\vec{G}-\vec{O}=\myvec{d\\d}.\\
+\vec{F}=\myvec{d\\0},\vec{G}-\vec{F}=\myvec{0\\d},\\ \vec{H}-\vec{G}=\myvec{-d\\0},-\vec{H}=\myvec{0\\-d}\\
+\vec{G}=\myvec{d\\d}.\\
 \vec{H}-\vec{F}=\myvec{-d\\d}.\\
 \end{split}
 \end{align}
@@ -233,7 +233,7 @@ Let $\vec{P}$ be translation vector is given by
 \begin{align}
 \begin{split}
 \vec{P} = -\vec{A}\\
-\cos \theta = \frac{(\vec{C}-\vec{A})^T \vec{OG}}{\Vert(\vec{C}-\vec{A})^T\Vert}
+\cos \theta = \frac{(\vec{C}-\vec{A})^T\  \vec{OG}}{\Vert(\vec{C}-\vec{A})^T\Vert}
     \end{split}
 \end{align}
 \subsection{For Rotation Matrix R}
@@ -266,15 +266,15 @@ Here the rotation angle is $\theta$. Hence the rotation matrix is given by
 The generalized affine transformation principles are as below
 \begin{align}
 \begin{split}
-\vec{A^{'}} = \vec{R}(\vec{A+P})=\myvec{\cos \theta & -\sin \theta\\\sin \theta & \cos \theta}\myvec{0\\0} = \myvec{0\\0} = \vec{O}.\\
+\vec{A^{'}} = \vec{R}(\vec{A+P})=\myvec{\cos \theta & -\sin \theta\\\sin \theta & \cos \theta}\myvec{0\\0} = \myvec{0\\0} \\
 \vec{C^{'}} = \vec{R}(\vec{C+P})=\myvec{\cos \theta & -\sin \theta\\\sin \theta & \cos \theta}\myvec{x_3-x_1\\y_3-y_1}.\\
 \\
 \vec{B^{'}}=\vec{A^{'}B^{'}}+\vec{A^{'}}\\
 \text{where }
-\vec{A^{'}B^{'}} = ||\vec{A^{'}B^{'}}||(\vec{F}-\vec{O}).\\
+\vec{A^{'}B^{'}} = ||\vec{A^{'}B^{'}}||(\vec{F}).\\
 \vec{D^{'}}=\vec{A^{'}D^{'}}+\vec{A^{'}}\\
 \text{where }
-\vec{A^{'}D^{'}} = ||\vec{A^{'}D^{'}}||(\vec{H}-\vec{O}).
+\vec{A^{'}D^{'}} = ||\vec{A^{'}D^{'}}||(\vec{H}).
 \end{split}
 \end{align}
 \subsection{Reverse Affine Transformation}
@@ -369,15 +369,15 @@ The line equation of $\vec{A^{'}C^{'}}$ is x-y=0 or simply x=y.\\
 \begin{align}
 \begin{split}
 \Vert\vec{A^{'}B^{'}}\Vert =\Vert\vec{A^{'}D^{'}}\Vert \frac{\Vert\vec{A^{'}C^{'}}\Vert}{\sqrt{2}} = \frac{4}{\sqrt{2}}=2\sqrt{2}.\\
-\text{Also}, \vec{F}-\vec{O} = \myvec{1\\0}\\
-\vec{A^{'}B^{'}} = \Vert\vec{A^{'}B^{'}}\Vert(\vec{F}-\vec{O)}=2\sqrt{2}\myvec{1\\0}=\myvec{2\sqrt{2}\\0}.\\
+\text{Also}, \vec{F} = \myvec{1\\0}\\
+\vec{A^{'}B^{'}} = \Vert\vec{A^{'}B^{'}}\Vert \vec{F}=2\sqrt{2}\myvec{1\\0}=\myvec{2\sqrt{2}\\0}.\\
 \vec{B^{'}} = \vec{A^{'}B^{'}}+\vec{A^{'}}=\myvec{2\sqrt{2}\\0}\\
 \end{split}
 \end{align}
 \begin{align}
 \begin{split}
-\text{Also,} \vec{H}-\vec{O} = \myvec{0\\1}\\
-\vec{A^{'}D^{'}} = \Vert\vec{A^{'}D^{'}}\Vert(\vec{H}-\vec{O})=2\sqrt{2}\myvec{0\\1}=\myvec{0\\2\sqrt{2}}.\\
+\text{Also,} \vec{H} = \myvec{0\\1}\\
+\vec{A^{'}D^{'}} = \Vert\vec{A^{'}D^{'}}\Vert \vec{H}=2\sqrt{2}\myvec{0\\1}=\myvec{0\\2\sqrt{2}}.\\
 \vec{D^{'}} = \vec{A^{'}D^{'}}+\vec{A^{'}}=\myvec{0\\2\sqrt{2}}\\
 \end{split}
 \end{align}
