@@ -3,10 +3,10 @@
 #include<stdbool.h>
 bool collinearity_value;
 double area_triangle;
-float a[2];
-float b[2];
-float c[2];
-float d[2];
+float a[2]={1,1};
+float b[2]={3,5};
+float c[2]={-2,4};
+float d[2]={-1,-5};
 double det(float a[2],float b[2], float c[2])
 {
     area_triangle = ((b[0]*c[1])-(b[1]*c[0]))-((a[0]*c[1])-(a[1]*c[0]))+((a[0]*b[1])-(a[1]*b[0]));
