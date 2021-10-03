@@ -64,14 +64,53 @@ void matrix_formation(float a[2],float b[2],float c[2])
     printf("\n Vertex matrix = ");
     print_matrix(vertex_matrix);
 }
-void rank_matrix(double matrix[3][3])
+void row_reduction(double rrmatrix[3][3])
 {
-    int non_zero_counter[2] = {0,0};
-    for(int i=1;i<3;i++){
-        for(int j=0;j<3;j++){
-            if(matrix[i][j]!=0)
+    int i=0,j=0;
+    for(i=0;i<3;i++){
+        for(j=0;j<3;j++){
+            reduction_matrix[i][j]=rrmatrix[i][j];
+        }
+    }
+    double scaling_factor_row[2];
+    double temp;
+    scaling_factor_row[0] = reduction_matrix[1][0]/reduction_matrix[0][0];
+    scaling_factor_row[1] = reduction_matrix[2][0]/reduction_matrix[0][0];
+    i=2,j=0;
+    while(i>0)
+    {
+        j=0;
+        if(reduction_matrix[i-i][j]!=reduction_matrix[i][j])
+        {
+            while(j<3)
             {
-                non_zero_counter[i]++;
+                temp = reduction_matrix[i][j]-(scaling_factor_row[i-1]*reduction_matrix[i-i][j]);
+                reduction_matrix[i][j]=temp;
+                j++;    
+            }
+            
+        }    
+        else
+        {
+            while(j<3)
+            {
+                temp = reduction_matrix[i][j]-reduction_matrix[i-i][j];
+                reduction_matrix[i][j]=temp;
+                j++;
+            }
+        }
+        i--;
+    }
+    printf("\n Reduction matrix = ");
+    print_matrix(reduction_matrix);
+    int non_zero_counter[2]={0,0};
+    for(i=1;i<3;i++)
+    {
+        for(j=0;j<3;j++)
+        {
+            if(reduction_matrix[i][j]!=0)
+            {
+                non_zero_counter[i-1] = non_zero_counter[i-1]+1;
             }
             
         }
@@ -98,48 +137,7 @@ void rank_matrix(double matrix[3][3])
             rank_value=1;
         }
     }
-}
-void row_reduction(double matrix[3][3])
-{
-    int i=2,j=0;
-    for(i=0;i<3;i++){
-        for(j=0;j<3;j++){
-            reduction_matrix[i][j]=matrix[i][j];
-        }
-    }
-    double scaling_factor_row[2];
-    double temp;
-    scaling_factor_row[0] = reduction_matrix[1][0]/reduction_matrix[0][0];
-    scaling_factor_row[1] = reduction_matrix[2][0]/reduction_matrix[0][0];
-    while(i>0)
-    {
-        j=0;
-        if(reduction_matrix[i-i][j]!=reduction_matrix[i][j])
-        {
-            while(j<3)
-            {
-                temp = reduction_matrix[i][j]-(scaling_factor_row[i-1]*reduction_matrix[i-i][j]);
-                reduction_matrix[i][j]=temp;
-                j++;    
-            }
-            
-        }    
-        else
-        {
-            while(j<3)
-            {
-                temp = reduction_matrix[i][j]-reduction_matrix[i-i][j];
-                reduction_matrix[i][j]=temp;
-                j++;
-            }
-        }
-        i--;
-        printf("\n Reduction matrix = ");
-        print_matrix(reduction_matrix);
-    }
-    /*printf("\n Reduction matrix = ");
-    print_matrix(reduction_matrix);*/
-    rank_matrix(reduction_matrix);
+    printf("\n Rank of the matrix = %d", rank_value);
     
 }    
 bool collinearity_check(float a[2],float b[2],float c[2])
