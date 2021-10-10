@@ -181,10 +181,10 @@ int matrix_formation(int *a,int *b,int *c)
     }
     printf("\n Rank of the matrix = %d", rank_value);
     return rank_value;
+    free(vertex_matrix);
 }    
 bool collinearity_check(int *a, int *b, int *c)
 {   
-    int (*result_matrix)[3];
     bool collinearity_value;
     int *ca,*cb,*cc,i,j;
     ca = (int *)malloc(arr_size*sizeof(int));
