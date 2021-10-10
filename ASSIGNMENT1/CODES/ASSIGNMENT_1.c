@@ -180,5 +180,5 @@ void main(void)
         area_quad = area_1 + area_2;
         printf("\n Area of Quadrilateral formed by points A(%.2f,%.2f), B(%.2f,%.2f), C(%.2f,%.2f), D(%.2f,%.2f) = %.2f",a[0],a[1],b[0],b[1],c[0],c[1],d[0],d[1],area_quad);
     }
-return;
+//return;
 }

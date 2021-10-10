@@ -7,7 +7,7 @@
             "program": "enter program name, for example ${workspaceFolder}/a.exe",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "${fileDirname}",
+            "cwd": "C:\\Users\\rsgir\\Documents",
             "environment": [],
             "console": "externalTerminal"
         },
