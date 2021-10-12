@@ -44,7 +44,7 @@ def rotation(a, rot_angle):
 #DEFINITION OF FUNCTION FOR COEFFICIENTS OF EQUATION GENERATION
 def coeff_gen(A,B,AB):
     #print(A,B,AB)
-    A_prime = np.array([A[1],-A[0]])
+    A_prime = np.array([-A[1],A[0]])
     #print(A_prime)
     coeff_a = -round(AB[1],2)
     coeff_b = round(AB[0],2)
@@ -63,7 +63,7 @@ c = np.array([0,3])
 trnslt_mat = np.array([0,1])
 a_prime = translation(a,trnslt_mat)
 c_prime = translation(c,trnslt_mat)
-rot_angle = -(math.pi)/4
+rot_angle = (math.pi)/4
 a_prime_rot = rotation(a_prime, rot_angle)
 c_prime_rot = rotation(c_prime, rot_angle)
 #Direction Vector
@@ -88,7 +88,7 @@ d_prime_rot=np.array([mp[0]-x_BD[0]/2, mp[1]-x_BD[1]/2])
 print(b_prime_rot,d_prime_rot)
 #REVERSE AFFINE TRANSFORMATION
 #ANTI CLOCK WISE ROTATION
-rot_angle = math.pi/4
+rot_angle = -(math.pi/4)
 b_prime = rotation(b_prime_rot, rot_angle)
 d_prime = rotation(d_prime_rot, rot_angle)
 #REVERSE TRANSLATION
@@ -107,9 +107,9 @@ x_DA = a-d
 '''
 WHEN TWO COORDINATES (X1 Y1) AND (X2 Y2) ARE GIVEN, THEN THE LINE EQUATION IS GIVEN BY 
 (Y-Y1)/(Y2-Y1) = (X-X1)/(X2-X1)
-AND IN THE FORM AX+BY+C = 0, A= Y2-Y1, B=X1-X2, C=(-(Y2-Y1)*X1)+((X2-X1)*Y1) 
+AND IN THE FORM AX+BY+C = 0, A= Y1-Y2, B=X2-X1, C=(X1Y2-X2Y1) 
 IN MATRIX FORM PT1 = ([X1,Y1]), PT2 = ([X2,Y2]) AND DIRECTIONAL VECTOR DV1 = PT2 - PT1 =([X2-X1, Y2-Y1]) THEN 
-A= DV1[1], B=-DV1[0], C = [PT1[1],-PT[0]]@DV1.T
+A= -DV1[1], B=DV1[0], C = [-PT1[1] ,PT1[0]]@DV1.T
 '''
 #using affine transformation, any new coordinates (x',y') are given by
 #  x' = ax+by+c, y' = dx+ey+f provided (x,y) are existing coordinates
