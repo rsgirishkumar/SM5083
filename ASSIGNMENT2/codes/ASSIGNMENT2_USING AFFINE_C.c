@@ -1,192 +1,346 @@
 //Question: The opposite vertices of a sqaure are (0,-1), (0,3). Find the equations of four sides.
 #include<stdio.h>
 #include<math.h>
-double line_gen(a,b)
+#include<stdlib.h>
+#include<stdbool.h>
+#define arr_size 2
+#define angle 0.7853981634
+double a[]={0,-1}, c[]={0,3};
+double *va,*vb,*vc,*vd;
+void print_vertex(double *a)
 {
-    len = 10;
-    dim = null;
-    x_AB[len] = 0;
-    for(i=0;i<=1;(i+(1/len)))
-    {
-        lam_1[i] = 
-    }
-    lam_1 = np.linspace(0, 1, len)
-    for i in range(len):
-        temp1 = A + lam_1[i] * (B - A)
-        x_AB[:, i] = temp1.T
-    return x_AB
-
+    double *pa;
+    pa = (double *)malloc(arr_size*sizeof(double));
+    pa = 0;
+    pa = realloc(pa, arr_size*sizeof(double));
+    pa = a;
+    printf("\n[ %.2f , %.2f ]",pa[0],pa[1]);
+    //free(pa);
 }
-# Generate line points
-def line_gen(A, B):
+double* affine_translation(double *a, double *tf)
+{
+    double *temp_a,*trns_a, *trans_fact;
+    temp_a = (double *) malloc(arr_size*sizeof(double));
+    temp_a = 0;
+    temp_a = realloc(temp_a, arr_size*sizeof(double));
+    temp_a = a;
+    trans_fact = (double *) malloc(arr_size*sizeof(double));
+    trans_fact = 0;
+    trans_fact = realloc(trans_fact, arr_size*sizeof(double));
+    trans_fact = tf;
+    //Translating to Origin
+    trns_a = (double *) malloc(arr_size*sizeof(double));
+    trns_a = 0;
+    trns_a = realloc(trns_a, arr_size*sizeof(double));
     
-#orthogonal matrix
-omat = np.array([[0,1],[-1,0]])
-#TRANSLATION
-#Shifting co-ordinates by [0,1]
-def translation(a, trnslt_mat):
-    a_trans = a+trnslt_mat
-    return a_trans
+    *trns_a = *temp_a-*trans_fact;
+    *(trns_a+1) = *(temp_a+1)-*(trans_fact+1);
+    //free(temp_a);
+    //free(trans_fact);
+    return trns_a;
+}
+double* line_gen_coeff(double *a, double *c)
+{
+    double *coeff, *la, *lc;
+    //Line in Quadratic form ax+by+c=0;
+    la = (double *)malloc(arr_size*sizeof(double));
+    la = 0;
+    la = realloc(la,arr_size*sizeof(double));
+    la = a;
 
-#ROTATION
-def rotation(a, rot_angle):
-#rotation angle
-    #rot_angle = math.pi/4
-#print(rot_angle)
-    cos_rot_angle = math.cos(rot_angle)
-    sin_rot_angle = math.sin(rot_angle)
-    #print(cos_rot_angle, sin_rot_angle)
-#rotation matrix is given by [[cos(angle), -sin(angle)],[sin(angle),cos(angle)]]
-    rot_mat = np.array(([cos_rot_angle, -sin_rot_angle],[sin_rot_angle,cos_rot_angle]))
-    #print(rot_mat)
-#rotating given coordinates
-    a_rot_prime = a @ rot_mat
-    print(a_rot_prime)
-    return a_rot_prime
+    lc = (double *)malloc(arr_size*sizeof(double));
+    lc = 0;
+    lc = realloc(lc,arr_size*sizeof(double));
+    lc = c;
+    
+    coeff = (double *)malloc((arr_size+1)*sizeof(double));
+    coeff = 0;
+    coeff = realloc(coeff,(arr_size+1)*sizeof(double));
+    
+    coeff[0] = la[1]-lc[1];
+    coeff[1] = lc[0]-lc[0];
+    coeff[2] = (la[0]*lc[1])-(la[1]*lc[0]);
 
-#DEFINITION OF FUNCTION FOR COEFFICIENTS OF EQUATION GENERATION
-def coeff_gen(A,B,AB):
-    #print(A,B,AB)
-    A_prime = np.array([A[1],-A[0]])
-    #print(A_prime)
-    coeff_a = round(AB[1],2)
-    coeff_b = -round(AB[0],2)
-    AB_prime = np.array([AB])
-    #print(A_prime,np.transpose(AB_prime))
-    coeff_c = np.matmul(A_prime, np.transpose(AB_prime))
-    #print(coeff_c)
-    coeff_mat = np.array([coeff_a, coeff_b, round(coeff_c[0])])
-    return coeff_mat
+    //free(la);
+    //free(lc);
+    return coeff;
+}
+double rot_fact_calc(double *a, double *c)
+{
+    double *line_coeff1, *line_coeff2, angle_with_x_axis;
+    double *ra, *rc;
+    ra = (double *)malloc(arr_size*sizeof(double));
+    ra = 0;
+    ra = realloc(ra,arr_size*sizeof(double));
+    ra = a;
 
-#x_AC = line_gen(a,c)
-#print(x_AC)
-# GIVEN POINTS
-a = np.array([0,-1])
-c = np.array([0,3])
-trnslt_mat = np.array([0,1])
-a_prime = translation(a,trnslt_mat)
-c_prime = translation(c,trnslt_mat)
-rot_angle = -(math.pi)/4
-a_prime_rot = rotation(a_prime, rot_angle)
-c_prime_rot = rotation(c_prime, rot_angle)
-#Direction Vector
-x_AC = c_prime_rot - a_prime_rot
-print(x_AC)
-#Perpendicular Vector
-x_BD = x_AC @ omat
-print(x_BD)
-#The vector which is orthogonal to x_ac is another diagonal and that vector is given by the transpose of vector array. Hence
-#x_bd = np.vstack(x_ac)
-# MIDPOINT OF DIAGONAL
-mp = np.array([(a_prime_rot[0]+c_prime_rot[0])/2,(a_prime_rot[1]+c_prime_rot[1])/2])
-print(mp)
-#Other unknown coordinates
-#dist_ac = norm(c-a)
-len_bd = norm(x_BD)
-#print(len_bd)
-#LET MIDPOINT BE vector MP  and denoted by M
-#SINCE vector AC is a diagonal, AC= AM+MC. SIMILARLY BD= BM+MD
-b_prime_rot=np.array([mp[0]+ x_BD[0]/2,mp[1]+x_BD[1]/2])
-d_prime_rot=np.array([mp[0]-x_BD[0]/2, mp[1]-x_BD[1]/2])
-print(b_prime_rot,d_prime_rot)
-#REVERSE AFFINE TRANSFORMATION
-#ANTI CLOCK WISE ROTATION
-rot_angle = math.pi/4
-b_prime = rotation(b_prime_rot, rot_angle)
-d_prime = rotation(d_prime_rot, rot_angle)
-#REVERSE TRANSLATION
-trnslt_mat = np.array([0,-1])
-b=translation(b_prime,trnslt_mat)
-d=translation(d_prime,trnslt_mat)
-# Direction Vectors
-x_AB = b-a
-x_BC = c-b
-x_CD = d-c
-x_DA = a-d
+    rc = (double *)malloc(arr_size*sizeof(double));
+    rc = 0;
+    rc = realloc(rc,arr_size*sizeof(double));
+    rc = c;
+    
+    /*line_coeff1 = (double *)malloc((arr_size+1)*sizeof(double));
+    line_coeff1 =0;
+    line_coeff1 =realloc(rc,(arr_size+1)*sizeof(double));
+    
+    line_coeff1 = line_coeff_gen(ra,rc);
 
-#print(x_AB, x_BC, x_CD, x_DA)
+    line_coeff2 = (double *)malloc((arr_size+1)*sizeof(double));
+    line_coeff2 =0;
+    line_coeff2 =realloc(rc,(arr_size+1)*sizeof(double));
+    
+    line_coeff2 = {0,1,0};*/
 
-# EQUATIONS OF A LINE GENERATION
-'''
-WHEN TWO COORDINATES (X1 Y1) AND (X2 Y2) ARE GIVEN, THEN THE LINE EQUATION IS GIVEN BY 
-(Y-Y1)/(Y2-Y1) = (X-X1)/(X2-X1)
-AND IN THE FORM AX+BY+C = 0, A= Y2-Y1, B=X1-X2, C=(-(Y2-Y1)*X1)+((X2-X1)*Y1) 
-IN MATRIX FORM PT1 = ([X1,Y1]), PT2 = ([X2,Y2]) AND DIRECTIONAL VECTOR DV1 = PT2 - PT1 =([X2-X1, Y2-Y1]) THEN 
-A= DV1[1], B=-DV1[0], C = [PT1[1],-PT[0]]@DV1.T
-'''
-#using affine transformation, any new coordinates (x',y') are given by
-#  x' = ax+by+c, y' = dx+ey+f provided (x,y) are existing coordinates
-# a = cos(angle) b=-sin(angle) d = sin(angle) e =cos(angle)
-#CONTROL FOR COEFFICIENTS
-line_ab_coeff = coeff_gen(a,b,x_AB)
-line_bc_coeff = coeff_gen(b,c,x_BC)
-line_cd_coeff = coeff_gen(c,d,x_CD)
-line_da_coeff = coeff_gen(d,a,x_DA)
-#EQUATION STRING FORMATION FOR DISPLAY
-eqn_ab = str(line_ab_coeff[0])+'x+'+str(line_ab_coeff[1])+'y+'+str(line_ab_coeff[2])+'=0'
-eqn_bc = str(line_bc_coeff[0])+'x+'+str(line_bc_coeff[1])+'y+'+str(line_bc_coeff[2])+'=0'
-eqn_cd = str(line_cd_coeff[0])+'x+'+str(line_cd_coeff[1])+'y+'+str(line_cd_coeff[2])+'=0'
-eqn_da = str(line_da_coeff[0])+'x+'+str(line_da_coeff[1])+'y+'+str(line_da_coeff[2])+'=0'
+    angle_with_x_axis = atan((rc[1]-ra[1])/(rc[0]-ra[0]));
+    //free(ra);
+   //free(rc);
+    return angle_with_x_axis;
+}
+double norm(double *a, double *c)
+{
+    double *na, *nc, norm_ac;
 
-print(eqn_ab)
-print(eqn_bc)
-print(eqn_cd)
-print(eqn_da)
-'''
-print(line_ab_coeff)
-print(line_bc_coeff)
-print(line_cd_coeff)
-print(line_da_coeff)
-'''
-# LINE GENERATIONS FOR PLOT
+    na = (double *)malloc(arr_size*sizeof(double));
+    na = 0;
+    na = realloc(na,arr_size*sizeof(double));
+    na = a;
 
-# SIDES OF A SQUARE - LINE POINTS GENERATION
+    nc = (double *)malloc(arr_size*sizeof(double));
+    nc = 0;
+    nc = realloc(nc,arr_size*sizeof(double));
+    nc = c;
 
-x_ab = line_gen(a, b)
-#print(x_ab)
-x_bc = line_gen(b, c)
-x_cd = line_gen(c, d)
-x_da = line_gen(d, a)
+    norm_ac = sqrt(pow(na[0]-nc[0],2)+pow(na[1]-nc[1],2));
+    //free(na);
+    //free(nc);
+    return norm_ac;
+}
+double* affine_rotation(double *a, double rot_fact)
+{
+    double *ar_a, *temp_a, (*rotan_fact_matrix)[2];
+    ar_a = (double*)malloc(arr_size*sizeof(double));
+    ar_a = 0;
+    ar_a = realloc(ar_a, arr_size*sizeof(double));
+    ar_a = a;
 
-# DIAGONALS OF SQUARE - LINE POINTS GENERATION
+    rotan_fact_matrix = (double *)malloc(arr_size*arr_size*sizeof(double));
+    **rotan_fact_matrix = cos(rot_fact);
+    *(*(rotan_fact_matrix)+1) = sin(rot_fact);
+    *(*(rotan_fact_matrix+1)) = -sin(rot_fact);
+    *(*(rotan_fact_matrix+1)+1) = cos(rot_fact);
 
-x_ac = line_gen(a, c)
-x_bd = line_gen(b, d)
+    temp_a = (double*)malloc(arr_size*sizeof(double));
+    temp_a = 0;
+    temp_a = realloc(temp_a, arr_size*sizeof(double));
+    temp_a[0] = **rotan_fact_matrix * ar_a[0] + *(*(rotan_fact_matrix)+1) * ar_a[1];
+    temp_a[1] = *(*(rotan_fact_matrix+1)) * ar_a[0] + *(*(rotan_fact_matrix+1)+1) * ar_a[1];
+    free(ar_a);
+    ar_a = (double*)malloc(arr_size*sizeof(double));
+    ar_a = 0;
+    ar_a = realloc(ar_a, arr_size*sizeof(double));
+    ar_a = temp_a;
+    //free(temp_a);
+    //free(rotan_fact_matrix);
+    return ar_a;
+}
+double* rev_affine(double *a, double *trns_fact, double rot_fact)
+{
+    double *aa,*ab,*ac;
+    double *aff_a,*aff_b,*aff_c;
+    double *trans_fact;
+    double rotn_fact;
 
-# PLOTTING THE LINES
+    aa = (double *)malloc(arr_size*sizeof(double));
+    aa = 0;
+    aa = realloc(aa,arr_size*sizeof(double));
+    aa = a;
 
-plt.plot(x_ab[0, :], x_ab[1, :], label="$AB$")
-plt.plot(x_bc[0, :], x_bc[1, :], label="$BC$")
-plt.plot(x_cd[0, :], x_cd[1, :], label="$CD$")
-plt.plot(x_da[0, :], x_da[1, :], label="$DA$")
-plt.plot(x_ac[0, :], x_ac[1, :], label="$AC$")
-plt.plot(x_bd[0, :], x_bd[1, :], label="$BD$")
+    trans_fact = (double *)malloc(arr_size*sizeof(double));
+    trans_fact = 0;
+    trans_fact = realloc(trans_fact,arr_size*sizeof(double));
+    trans_fact[0] = trns_fact[0];
+    trans_fact[1] = trns_fact[1];
 
-# ANNOTATIONS IN GRAPH
-quad_coords = np.vstack((a, b, c, d)).T
-plt.scatter(quad_coords[0, :], quad_coords[1, :])
-vert_labels = ['A', 'B', 'C', 'D']
-eqn_labels = [eqn_ab,eqn_bc,eqn_cd, eqn_da]
-for i, txt in enumerate(vert_labels):
-    plt.annotate(txt,  # this is the text
-                 (quad_coords[0, i], quad_coords[1, i]),  # this is the point to label
-                 textcoords="offset points",  # how to position the text
-                 xytext=(0, 10),  # distance from text to points (x,y)
-                 ha='center')  # horizontal alignment can be left, right or center
+    rotn_fact = rot_fact;
 
-quad_coords = np.vstack((((a+b)/2)-1,((b+c)/2),((c+d)/2)+1,((d+a)/2))).T
-for i, txt in enumerate(eqn_labels):
-    plt.annotate(txt,  # this is the text
-                 (quad_coords[0, i], quad_coords[1, i]),  # this is the point to label
-                 textcoords="offset points",  # how to position the text
-                 xytext=(0,0),  # distance from text to points (x,y)
-                 ha='center')  # horizontal alignment can be left, right or center
+    aff_a = (double *)malloc(arr_size*sizeof(double));
+    aff_a = 0;
+    aff_a = realloc(aff_a,arr_size*sizeof(double));
 
-plt.xlabel('$x$')
-plt.ylabel('$y$')
-plt.legend(loc='lower right')
-plt.grid()
-plt.xlim(-5, 5)
-plt.ylim(-5, 5)
-plt.savefig('assignment2_using affine.png')
-plt.show()
+    aff_a = affine_rotation(aa, rotn_fact);
+    aff_b = affine_translation(aff_a, trans_fact);
+
+    free(aff_a);
+
+    aff_a = (double *)malloc(arr_size*sizeof(double));
+    aff_a = 0;
+    aff_a = realloc(aff_a,arr_size*sizeof(double));
+    aff_a = aff_b;
+    
+    return aff_a;
+}
+
+double* affine(double *a, double *trns_fact, double rot_fact)
+{
+    double *aa,*ab,*ac;
+    double *aff_a,*aff_b,*aff_c;
+    double *trans_fact;
+    double rotn_fact;
+
+    aa = (double *)malloc(arr_size*sizeof(double));
+    aa = 0;
+    aa = realloc(aa,arr_size*sizeof(double));
+    aa = a;
+
+    trans_fact = (double *)malloc(arr_size*sizeof(double));
+    trans_fact = 0;
+    trans_fact = realloc(trans_fact,arr_size*sizeof(double));
+    trans_fact[0] = trns_fact[0];
+    trans_fact[1] = trns_fact[1];
+
+    rotn_fact = rot_fact;
+
+    aff_a = (double *)malloc(arr_size*sizeof(double));
+    aff_a = 0;
+    aff_a = realloc(aff_a,arr_size*sizeof(double));
+
+    aff_a = affine_translation(aa, trans_fact);
+    aff_b = affine_rotation(aff_a, rot_fact);
+
+    free(aff_a);
+
+    aff_a = (double *)malloc(arr_size*sizeof(double));
+    aff_a = 0;
+    aff_a = realloc(aff_a,arr_size*sizeof(double));
+    aff_a = aff_b;
+    
+    return aff_a;
+}
+
+int main(void)
+{
+    double *ma, *mb, *mc, *md;
+    double *trns_fact;
+    double rot_fact;
+    double norm_ac, norm_ab;
+    double *line_1_coeff,*line_2_coeff,*line_3_coeff,*line_4_coeff;
+
+    ma = (double *)malloc(arr_size*sizeof(double));
+    ma = 0;
+    ma = realloc(ma,arr_size*sizeof(double));
+    ma = a;
+    printf("\n Vertex A:");
+    print_vertex(ma);
+    mc = (double *)malloc(arr_size*sizeof(double));
+    mc = 0;
+    mc = realloc(mc,arr_size*sizeof(double));
+    mc = c;
+    printf("\n Vertex C:");
+    print_vertex(mc);
+    trns_fact = (double *)malloc(arr_size*sizeof(double));
+    trns_fact = 0;
+    trns_fact = realloc(trns_fact,arr_size*sizeof(double));
+    trns_fact[0] = ma[0]-0;
+    trns_fact[1] = ma[1]-0;
+    printf("\n Translation Matrix:");
+    print_vertex(trns_fact);
+    rot_fact = rot_fact_calc(ma,mc)-angle;
+    printf("\n Rotation angle"); 
+    printf("\n%.2f", rot_fact);
+    va = (double *)malloc(arr_size*sizeof(double));
+    va = 0;
+    va = realloc(va,arr_size*sizeof(double));
+    va = affine(ma, trns_fact, rot_fact);
+    printf("\n After Affine Transformation, Vertex A:");
+    print_vertex(va);
+    vc = (double *)malloc(arr_size*sizeof(double));
+    vc = 0;
+    vc = realloc(vc,arr_size*sizeof(double));
+    vc = affine(mc, trns_fact, rot_fact);
+    printf("\n After Affine Transformation, Vertex C:");
+    print_vertex(vc);
+    //free(ma);
+    //free(mc);
+    printf("\n Norm of A-C:");
+    norm_ac = norm(va,vc);
+    printf("\n%.2f", norm_ac);
+    norm_ab = norm_ac/sqrt(2);
+    vb = (double *)malloc(arr_size*sizeof(double));
+    vb = 0;
+    vb = realloc(vb,arr_size*sizeof(double));
+    vb[0] = va[0]+norm_ab;
+    vb[1] = va[1];
+    printf("\n After Affine Transformation, Vertex B:");
+    print_vertex(vb);
+    vd = (double *)malloc(arr_size*sizeof(double));
+    vd = 0;
+    vd = realloc(vd,arr_size*sizeof(double));
+    vd[0] = va[0];
+    vd[1] = va[1]+norm_ab;
+    printf("\n After Affine Transformation, Vertex D:");
+    print_vertex(vd);
+    free(trns_fact);
+    trns_fact = (double *)malloc(arr_size*sizeof(double));
+    trns_fact = 0;
+    trns_fact = realloc(trns_fact,arr_size*sizeof(double));
+    trns_fact[0] = 0 - ma[0];
+    trns_fact[1] = 0 - ma[1];
+    printf("\n Translation Vector for Reverse Afine:");
+    print_vertex(trns_fact);
+    rot_fact = -1 * rot_fact;
+    printf("\n Rotation angle for Reverse Affine");
+    printf("\n%.2f",rot_fact);
+    ma = (double *)malloc(arr_size*sizeof(double));
+    ma = 0;
+    ma = realloc(ma,arr_size*sizeof(double));
+    ma = rev_affine(va, trns_fact, rot_fact);
+    printf("\n After Reverse Affine Transformation, Vertex A:");
+    print_vertex(ma);
+    //print_vertex(vb);
+    mb = (double *)malloc(arr_size*sizeof(double));
+    mb = 0;
+    mb = realloc(mb,arr_size*sizeof(double));
+    mb = rev_affine(vb, trns_fact, rot_fact);
+    printf("\n After Reverse Affine Transformation, Vertex B:");
+    print_vertex(mb);
+    mc = (double *)malloc(arr_size*sizeof(double));
+    mc = 0;
+    mc = realloc(mc,arr_size*sizeof(double));
+    mc = rev_affine(vc,trns_fact, rot_fact);
+    printf("\n After Reverse Affine Transformation, Vertex C:");
+    print_vertex(mc);
+    //print_vertex(vd);
+    md = (double *)malloc(arr_size*sizeof(double));
+    md = 0;
+    md = realloc(md,arr_size*sizeof(double));
+    md = rev_affine(vd,trns_fact, rot_fact);
+    printf("\n After Reverse Affine Transformation, Vertex D:");
+    print_vertex(md);
+    line_1_coeff = (double *)malloc((arr_size+1)*sizeof(double));
+    line_1_coeff = 0;
+    line_1_coeff = realloc(line_1_coeff,(arr_size+1)*sizeof(double));
+    line_1_coeff = line_gen_coeff(ma,mb);
+    
+    line_2_coeff = (double *)malloc((arr_size+1)*sizeof(double));
+    line_2_coeff = 0;
+    line_2_coeff = realloc(line_2_coeff,(arr_size+1)*sizeof(double));
+    line_2_coeff = line_gen_coeff(mb,mc);
+    
+    line_3_coeff = (double *)malloc((arr_size+1)*sizeof(double));
+    line_3_coeff = 0;
+    line_3_coeff = realloc(line_3_coeff,(arr_size+1)*sizeof(double));
+    line_3_coeff = line_gen_coeff(mc,md);
+    
+    line_4_coeff = (double *)malloc((arr_size+1)*sizeof(double));
+    line_4_coeff = 0;
+    line_4_coeff = realloc(line_4_coeff,(arr_size+1)*sizeof(double));
+    line_4_coeff = line_gen_coeff(md,ma);
+    
+    printf("\nLine Equations are:");
+    printf("\n A-B = %.2f x + %.2f y + %.2f = 0", line_1_coeff[0],line_1_coeff[1],line_1_coeff[2]);
+    printf("\n B-C = %.2f x + %.2f y + %.2f = 0", line_2_coeff[0],line_2_coeff[1],line_2_coeff[2]);
+    printf("\n C-D = %.2f x + %.2f y + %.2f = 0", line_3_coeff[0],line_3_coeff[1],line_3_coeff[2]);
+    printf("\n D-A = %.2f x + %.2f y + %.2f = 0", line_4_coeff[0],line_4_coeff[1],line_4_coeff[2]);
+   
+   return 0;
+}
