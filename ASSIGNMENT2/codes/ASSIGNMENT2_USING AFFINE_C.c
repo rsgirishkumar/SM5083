@@ -4,7 +4,7 @@
 #include<stdlib.h>
 #include<stdbool.h>
 #define arr_size 2
-#define angle 0.7853981634
+#define angle 0.7853981634 //45 degrees
 double a[]={0,-1}, c[]={0,3};
 double *va,*vb,*vc,*vd;
 void print_vertex(double *a)
@@ -58,7 +58,7 @@ double* line_gen_coeff(double *a, double *c)
     coeff = realloc(coeff,(arr_size+1)*sizeof(double));
     
     coeff[0] = la[1]-lc[1];
-    coeff[1] = lc[0]-lc[0];
+    coeff[1] = lc[0]-la[0];
     coeff[2] = (la[0]*lc[1])-(la[1]*lc[0]);
 
     //free(la);

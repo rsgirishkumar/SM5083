@@ -368,7 +368,7 @@ The rotation is by $45^{o}$ clock wise. The rotation matrix is given by
 The line equation of $\vec{A^{'}C^{'}}$ is x-y=0 or simply x=y.\\
 \begin{align}
 \begin{split}
-\Vert\vec{A^{'}B^{'}}\Vert =\Vert\vec{A^{'}D^{'}}\Vert \frac{\Vert\vec{A^{'}C^{'}}\Vert}{\sqrt{2}} = \frac{4}{\sqrt{2}}=2\sqrt{2}.\\
+\Vert\vec{A^{'}B^{'}}\Vert =\Vert\vec{A^{'}D^{'}}\Vert= \frac{\Vert\vec{A^{'}C^{'}}\Vert}{\sqrt{2}} = \frac{4}{\sqrt{2}}=2\sqrt{2}.\\
 \text{Also}, \vec{F} = \myvec{1\\0}\\
 \vec{A^{'}B^{'}} = \Vert\vec{A^{'}B^{'}}\Vert \vec{F}=2\sqrt{2}\myvec{1\\0}=\myvec{2\sqrt{2}\\0}.\\
 \vec{B^{'}} = \vec{A^{'}B^{'}}+\vec{A^{'}}=\myvec{2\sqrt{2}\\0}\\
@@ -411,77 +411,55 @@ Coordinates are
 \begin{align}
 \begin{split}
 \vec{A} = \myvec{0 \\ -1},
-\vec{B} =\myvec{-2\\1} ,
+\vec{B} =\myvec{2\\1} ,
 \vec{C} = \myvec{0 \\ 3},
-\vec{D} =\myvec{2\\1}.
+\vec{D} =\myvec{-2\\1}.
 \end{split}
 \end{align}
 In Matrix form, if $\myvec{X_1\\Y_1} \&  \myvec{X_2\\Y_2}$ are the points given then the directional vector is given by \\$\myvec{X_2-X_1\\ Y_2-Y_1}$ \\then, 
 the form of equation ax+by+c=0 can be written as\\ 
 \begin{align}
 \begin{split}
-a= \vec{Y_2-Y_1},\\ b=-(\vec{X_2-X_1}),\\ c = \myvec{\vec{Y_2}&-\vec{X_2}} \myvec{\vec{X_2-X_1}\\\vec{ Y_2-Y_1}}
+a= \vec{Y_1-Y_2},\\ b=\vec{X_2-X_1},\\ c = \myvec{-\vec{Y_1}&\vec{X_1}} \myvec{\vec{X_2-X_1}\\\vec{ Y_2-Y_1}}
 \end{split}
 \end{align}
 \\
 \\
-By using the same, the line equation $\vec{AB}$ for points $\vec{A} = \myvec{0\\-1},\vec{B}=\myvec{-2\\1}$ is as follows:
+By using the same, the line equation $\vec{AB}$ for points $\vec{A} = \myvec{0\\-1},\vec{B}=\myvec{2\\1}$ is as follows:
 \\
 \begin{align}
 \begin{split}
-\vec{AB} = \myvec{-2\\2}\\
-a=2,\ b=2,\\
-c=\myvec{-1 & 0} \myvec{-2\\2}=2\\
+\vec{AB}  = \vec{B}-\vec{A} =  \myvec{-2\\2}\\
+a=-2,\ b=2,\\
+c=\myvec{1 & 0} \myvec{-2\\2}=-2\\
 \end{split}
 \end{align}
 Line equation for $\vec{AB}$
 \begin{align}
 \begin{split}
-\Rightarrow\ 2x+2y+2=0 \ or \ x+y=-1. \\
+\Rightarrow\ -2x+2y-2=0 \ or \ x-y=1. \\
 \end{split}
 \end{align}
 In vector form
 \begin{align}
 \begin{split}
-\Rightarrow \myvec{1&1}\ \vec{X}=-1\\
+\Rightarrow \myvec{1&-1}\ \vec{X}=1\\
 \end{split}
 \end{align}
 \\
-The line equation $\vec{BC}$ for points $\vec{B} = \myvec{-2\\1},\vec{C}=\myvec{0\\3}$ is as follows:
+The line equation $\vec{BC}$ for points $\vec{B} = \myvec{2\\1},\vec{C}=\myvec{0\\3}$ is as follows:
 \\
 \begin{align}
 \begin{split}
-\vec{BC} = \myvec{2\\2}\\
-a=2,\ b=-2,\\
-c=\myvec{1 & 2} \myvec{2\\2}=6\\
+\vec{BC} = \vec{C}-\vec{B} = \myvec{-2\\2}\\
+a=-2,\ b=-2,\\
+c=\myvec{-1 & 2} \myvec{-2\\2}=6\\
 \end{split}
 \end{align}
 Line equation for $\vec{BC}$
 \begin{align}
 \begin{split}
-\Rightarrow\ 2x-2y+6=0 \ or \ x-y=-3. \\
-\end{split}
-\end{align}
-In vector form
-\begin{align}
-\begin{split}
-\Rightarrow \myvec{1&-1}\ \vec{X}=-3
-\end{split}
-\end{align}
-\\
-The line equation $\vec{CD}$ for points $\vec{C}=\myvec{0\\3},\vec{D} = \myvec{2\\1}$ is as follows:
-\\
-\begin{align}
-\begin{split}
-\vec{CD} = \myvec{2\\-2}\\
-a=-2,\ b=-2,\\
-c=\myvec{3 & 0} \myvec{2\\-2}=6\\
-\end{split}
-\end{align}
-Line equation for $\vec{CD}$
-\begin{align}
-\begin{split}
- \Rightarrow\ -2x-2y+6=0 \ or \ x+y=3. \\
+\Rightarrow\ -2x-2y+6=0 \ or \ x+y=3. \\
 \end{split}
 \end{align}
 In vector form
@@ -491,24 +469,46 @@ In vector form
 \end{split}
 \end{align}
 \\
-The line equation $\vec{DA}$ for points $\vec{D} = \myvec{2\\1}, \vec{A} = \myvec{0\\-1}$ is as follows:\\
+The line equation $\vec{CD}$ for points $\vec{C}=\myvec{0\\3},\vec{D} = \myvec{-2\\1}$ is as follows:
+\\
 \begin{align}
 \begin{split}
-\vec{DA} = \myvec{-2\\-2}\\
-a=-2,\ b=2,\\
-c=\myvec{1 & -2} \myvec{-2\\-2}=2\\
+\vec{CD} = \vec{D}-\vec{C} =\myvec{-2\\-2}\\
+a=2,\ b=-2,\\
+c=\myvec{-3 & 0} \myvec{-2\\-2}=6\\
 \end{split}
 \end{align}
-Line equation for $\vec{DA}$
+Line equation for $\vec{CD}$
 \begin{align}
 \begin{split}
-\Rightarrow\ -2x+2y+2=0 \ or \ x-y=1. \\
+ \Rightarrow\ 2x-2y+6=0 \ or \ x-y=-3. \\
 \end{split}
 \end{align}
 In vector form
 \begin{align}
 \begin{split}
-\Rightarrow \myvec{1&-1}\ \vec{X}=1
+\Rightarrow \myvec{1&-1}\ \vec{X}=-3
+\end{split}
+\end{align}
+\\
+The line equation $\vec{DA}$ for points $\vec{D} = \myvec{-2\\1}, \vec{A} = \myvec{0\\-1}$ is as follows:\\
+\begin{align}
+\begin{split}
+\vec{DA} = \vec{A}-\vec{D} = \myvec{2\\-2}\\
+a=2,\ b=2,\\
+c=\myvec{-1 & -2} \myvec{2\\-2}=2\\
+\end{split}
+\end{align}
+Line equation for $\vec{DA}$
+\begin{align}
+\begin{split}
+\Rightarrow\ 2x+2y+2=0 \ or \ x+y=-1. \\
+\end{split}
+\end{align}
+In vector form
+\begin{align}
+\begin{split}
+\Rightarrow \myvec{1&1}\ \vec{X}=-1
 \end{split}
 \end{align}.
 \\
